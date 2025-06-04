@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: guestbook-ui
+  namespace: default
+spec:
+  project: default
+  sources:
+  - repoURL: https://github.com/smutoni2022/argocd-example-apps
+    targetRevision: HEAD
+    path: kustomize-guestbook
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: demo-app
+
+  syncPolicy:
+    automated: {}
