@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sock-shop
+  namespace: default
+spec:
+  project: default
+  sources:
+  - repoURL: https://github.com/smutoni2022/argocd-example-apps
+    targetRevision: HEAD
+    path: sock-shop
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: demo-app
+
+  syncPolicy:
+    automated: {}
